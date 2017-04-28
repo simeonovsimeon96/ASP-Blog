@@ -1,0 +1,36 @@
+﻿@model List<BlogSystem.Models.Article>
+
+@{
+    ViewBag.Title = "List";
+}
+
+<div class="container-fluid">
+    <div class="row">
+        @if (Model.Count == 0)
+        {
+            <p style="font-size:34px; align-self:center; align-items:center; align: center;">
+                Oops, looks like there are no articles, how about you @Html.ActionLink("create", "Create", "Article") the first one? 
+            </p>
+        }
+        @foreach (var article in Model)
+        {
+            <div>
+                <article>
+                    <header>
+                        <h2>
+                            @Html.ActionLink(@article.Title, "Details", "Article", new { @id = article.Id }, null)
+                        </h2>
+                    </header>
+                    <p>
+                        @article.Content
+                    </p>
+                    <footer class="pull-right">
+                        <small class="author">
+                            -Posted by @article.Author.FullName
+                        </small>
+                    </footer>
+                </article>
+            </div>
+        }
+</div>
+<hr />
